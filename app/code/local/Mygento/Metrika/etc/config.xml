@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sea-Lab Ltd
+ *
+ *
+ * @category   Mygento
+ * @package    Mygento_Metrika
+ * @copyright  Copyright © 2014 Sea-Lab Ltd (http://www.mygento.ru)
+ * @contacts   connect@mygento.ru
+ *
+ */
+-->
+<config>
+    <modules>
+        <Mygento_Metrika>
+            <version>1.0.0.0</version>
+        </Mygento_Metrika>
+    </modules>
+    <default>
+        <metrika>
+            <general>
+                <enabled>0</enabled>
+                <debug>0</debug>
+            </general>
+        </metrika>
+    </default>
+    <global>
+        <models>
+            <metrika>
+                <class>Mygento_Metrika_Model</class>
+            </metrika>
+        </models>
+       
+        <blocks>
+            <metrika>
+                <class>Mygento_Metrika_Block</class>
+            </metrika>
+        </blocks>
+        <helpers>
+            <metrika>
+                <class>Mygento_Metrika_Helper</class>
+            </metrika>
+        </helpers>
+		
+    </global>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <metrika>
+                                            <title>Mygento Metrika</title>
+                                        </metrika>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <metrika>
+                    <files>
+                        <default>Mygento_Metrika.csv</default>
+                    </files>
+                </metrika>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <layout>
+            <updates>
+                <metrika>
+                    <file>mygento/metrika.xml</file>
+                </metrika>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <metrika>
+                    <files>
+                        <default>Mygento_Metrika.csv</default>
+                    </files>
+                </metrika>
+            </modules>
+        </translate>
+    </frontend>
+</config>

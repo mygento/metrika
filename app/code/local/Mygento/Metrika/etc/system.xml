@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sea-Lab Ltd
+ *
+ *
+ * @category   Mygento
+ * @package    Mygento_Metrika
+ * @copyright  Copyright © 2014 Sea-Lab Ltd (http://www.mygento.ru)
+ * @contacts   connect@mygento.ru
+ *
+ */
+-->
+<config>
+    <tabs>
+        <allmygento translate="label">
+            <label>Mygento Extensions</label>
+            <sort_order>400</sort_order>
+        </allmygento>
+    </tabs>
+    <sections>
+        <metrika translate="label" module="metrika">
+            <label>Yandex Metrika</label>
+            <tab>allmygento</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>90</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Global Config</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <debug translate="label">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </debug>
+                    </fields>
+                </general>
+                <metrika translate="label">
+                    <label>Metrika Integration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                </metrika>
+            </groups>
+        </metrika>
+    </sections>
+</config>
