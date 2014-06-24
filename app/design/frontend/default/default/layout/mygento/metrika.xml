@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+    <default>
+        <reference name="before_body_end">
+            <block type="metrika/tracker" name="metrikatracker" as="metrikatracker"></block>
+        </reference>
+    </default>
+
+    <catalog_product_view>
+        <reference name="before_body_end">
+            <remove name="metrikatracker"></remove>
+            <block type="metrika/tracker" name="metrikatrackerprod" as="metrikatrackerprod">
+                <action method="setData">
+                    <name>viewpage</name>
+                    <value>product</value>
+                </action>
+            </block>
+        </reference>
+    </catalog_product_view>
+    
+    <catalog_category_default>
+        <reference name="before_body_end">
+            <remove name="metrikatracker"></remove>
+            <block type="metrika/tracker" name="metrikatrackercat" as="metrikatrackercat">
+                <action method="setData">
+                    <name>viewpage</name>
+                    <value>category</value>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_default>
+    
+    <catalog_category_layered>
+        <reference name="before_body_end">
+            <remove name="metrikatracker"></remove>
+            <block type="metrika/tracker" name="metrikatrackercat" as="metrikatrackercat">
+                <action method="setData">
+                    <name>viewpage</name>
+                    <value>category</value>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered>
+
+    <checkout_cart_index>
+        <reference name="before_body_end">
+            <remove name="metrikatracker"></remove>
+        </reference>
+        <reference name="content">
+            <block type="metrika/tracker" name="metrikatrackercart" as="metrikatrackercart">
+                <action method="setData">
+                    <name>viewpage</name>
+                    <value>cart</value>
+                </action>
+            </block>
+        </reference>
+    </checkout_cart_index>
+
+    <checkout_onepage_success>
+        <reference name="before_body_end">
+            <remove name="metrikatracker"></remove>
+        </reference>
+        <reference name="content">
+            <block type="metrika/tracker" name="metrikatrackerorder" as="metrikatrackerorder">
+                <action method="setData">
+                    <name>viewpage</name>
+                    <value>order</value>
+                </action>
+            </block>
+        </reference>
+    </checkout_onepage_success>
+
+</layout>
