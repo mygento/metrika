@@ -1,0 +1,10 @@
+{
+    "name": "mygento/metrika",
+    "type": "magento-module",
+    "license": "GPLv3",
+    "homepage": "https://github.com/mygento/metrika",
+    "description": "Metrika Module",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
