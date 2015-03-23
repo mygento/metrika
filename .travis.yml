@@ -10,9 +10,10 @@ before_script:
   - phpenv rehash
   - composer self-update
   - composer install --no-interaction
+  - phpcs --config-set ignore_warnings_on_exit 1
 
 script:
-  - phpcs --standard=vendor/magento-ecg/coding-standard/Ecg --ignore=vendor --config-set ignore_warnings_on_exit 1 .
+  - phpcs --standard=vendor/magento-ecg/coding-standard/Ecg --ignore=vendor .
   - php vendor/bin/parallel-lint --exclude vendor .
   - php vendor/bin/phpcpd --exclude=vendor .
   - php vendor/bin/phpdcd --exclude=vendor .
