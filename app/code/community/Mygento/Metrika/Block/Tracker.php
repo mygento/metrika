@@ -9,7 +9,7 @@
 class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
 {
 
-    public function Basic1()
+    public function getBasic1()
     {
         $options = array();
         $options['id'] = intval(Mage::getStoreConfig('metrika/metrika/counter'));
@@ -35,7 +35,7 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
                 ';
     }
 
-    public function Basic2()
+    public function getBasic2()
     {
         return '} catch (e) {}});
             
@@ -62,8 +62,8 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
     public function toDefault()
     {
         $html = '';
-        $html.=$this->Basic1();
-        $html.=$this->Basic2();
+        $html.=$this->getBasic1();
+        $html.=$this->getBasic2();
         return $html;
     }
 
@@ -81,11 +81,11 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
             $_cat = Mage::getModel('catalog/category')->load($category_id);
             $categories[] = $_cat->getName();
         }
-        $html.=$this->Basic1();
+        $html.=$this->getBasic1();
         // add the first product to the order
         $html.='product';
 
-        $html.=$this->Basic2();
+        $html.=$this->getBasic2();
 
         return $html;
     }
@@ -94,17 +94,17 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
     {
         $html = '';
         $_category = Mage::registry('current_category');
-        $html.=$this->Basic1();
+        $html.=$this->getBasic1();
         $name = str_replace('"', '', $_category->getName());
         $html.='category';
-        $html.=$this->Basic2();
+        $html.=$this->getBasic2();
         return $html;
     }
 
     public function toCart()
     {
         $html = '';
-        $html.=$this->Basic1();
+        $html.=$this->getBasic1();
         $options = array();
         $session = Mage::getSingleton('checkout/session');
         if (count($session->getQuote()->getAllItems())) {
@@ -120,7 +120,7 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
             $options['order_price'] = $grandTotal;
         }
         $html.='w.yaCounter' . intval(Mage::getStoreConfig('metrika/metrika/counter')) . '.reachGoal(\'cart\',' . json_encode($options) . ');';
-        $html.=$this->Basic2();
+        $html.=$this->getBasic2();
         return $html;
     }
 
@@ -134,7 +134,7 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         $order->load($lastid);
         $options = array();
 
-        $html.=$this->Basic1();
+        $html.=$this->getBasic1();
         $options['order_id'] = (string) $order->getIncrementId();
         $options['currency'] = Mage::app()->getStore()->getCurrentCurrencyCode();
         $options['exchange_rate'] = 1;
@@ -146,7 +146,7 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         }
         $html.='w.yaCounter' . intval(Mage::getStoreConfig('metrika/metrika/counter')) . '.params(' . json_encode($options) . ');';
 
-        $html.=$this->Basic2();
+        $html.=$this->getBasic2();
         return $html;
     }
 
