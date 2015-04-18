@@ -1,5 +1,5 @@
-app/code/local/Mygento/Metrika app/code/local/Mygento/Metrika
-app/design/frontend/default/default/layout/mygento/metrika.xml app/design/frontend/default/default/layout/mygento/metrika.xml
+app/code/community/Mygento/Metrika app/code/community/Mygento/Metrika
+app/design/frontend/base/default/layout/mygento/metrika.xml app/design/frontend/base/default/layout/mygento/metrika.xml
 app/locale/ru_RU/Mygento_Metrika.csv app/locale/ru_RU/Mygento_Metrika.csv
 app/locale/uk_UA/Mygento_Metrika.csv app/locale/uk_UA/Mygento_Metrika.csv
 app/etc/modules/Mygento_Metrika.xml app/etc/modules/Mygento_Metrika.xml

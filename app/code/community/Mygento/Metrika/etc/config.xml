@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Sea-Lab Ltd
  *
  *
  * @category   Mygento
  * @package    Mygento_Metrika
- * @copyright  Copyright © 2014 Sea-Lab Ltd (http://www.mygento.ru)
+ * @copyright  Copyright © 2015 NKS (http://www.mygento.ru)
  * @contacts   connect@mygento.ru
  *
  */
@@ -14,7 +13,7 @@
 <config>
     <modules>
         <Mygento_Metrika>
-            <version>1.0.0.0</version>
+            <version>1.1.0</version>
         </Mygento_Metrika>
     </modules>
     <default>
@@ -31,7 +30,6 @@
                 <class>Mygento_Metrika_Model</class>
             </metrika>
         </models>
-       
         <blocks>
             <metrika>
                 <class>Mygento_Metrika_Block</class>
@@ -42,7 +40,6 @@
                 <class>Mygento_Metrika_Helper</class>
             </metrika>
         </helpers>
-		
     </global>
     <adminhtml>
         <acl>
@@ -92,4 +89,11 @@
             </modules>
         </translate>
     </frontend>
+    <phpunit>
+        <suite>
+            <modules>
+                <Mygento_Metrika/>
+            </modules>
+        </suite>
+    </phpunit>
 </config>

@@ -3,7 +3,7 @@
     <modules>
         <Mygento_Metrika>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
         </Mygento_Metrika>
     </modules>
 </config>
