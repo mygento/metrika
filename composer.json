@@ -1,7 +1,7 @@
 {
     "name": "mygento/metrika",
     "type": "magento-module",
-    "license": "GPLv3",
+    "license": "OSL-3.0",
     "homepage": "https://github.com/mygento/metrika",
     "description": "Metrika Module",
     "require": {
