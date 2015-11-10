@@ -12,22 +12,22 @@ matrix:
 
 env:
   matrix:
-    - MAGENTO_VERSION=magento-ce-1.9.1.0
+    - MAGENTO_VERSION=magento-ce-1.9.1.1
     - MAGENTO_VERSION=magento-ce-1.8.1.0
     - MAGENTO_VERSION=magento-ce-1.7.0.2
 
 before_script:
-  - pear install PHP_CodeSniffer
-  - phpenv rehash
   - composer self-update
   - composer install --no-interaction
-  - phpcs --config-set ignore_warnings_on_exit 1
+  - php vendor/bin/phpcs --config-set ignore_warnings_on_exit 1
   - sed -i 's/curl/banan/g' vendor/magento-ecg/coding-standard/Ecg/Sniffs/Security/ForbiddenFunctionSniff.php
+  - sed -i 's/pathinfo/ananas/g' vendor/magento-ecg/coding-standard/Ecg/Sniffs/Security/ForbiddenFunctionSniff.php
+  - sed -i 's/tempnam/cocos/g' vendor/magento-ecg/coding-standard/Ecg/Sniffs/Security/ForbiddenFunctionSniff.php
+  
 script:
   - php vendor/bin/parallel-lint --exclude vendor .
-  - phpcs --standard=vendor/magento-ecg/coding-standard/Ecg,vendor/mygento/coding-standard/Mygento-Mage1 --ignore=lib .
+  - php vendor/bin/phpcs --standard=vendor/magento-ecg/coding-standard/Ecg,vendor/mygento/coding-standard/Mygento-Mage1 --ignore=lib .
   - php vendor/bin/phpcpd --exclude=vendor --exclude=lib .
   - php vendor/bin/phpdcd --exclude=vendor --exclude=lib .
-  - php vendor/bin/phpmd . text codesize --exclude vendor,lib
+  - php vendor/bin/phpmd . text vendor/mygento/coding-standard/Mygento-Mage1/phpmd.xml --exclude vendor,lib
   - curl -sSL https://raw.githubusercontent.com/mygento/hamster/master/setup.sh | bash
-

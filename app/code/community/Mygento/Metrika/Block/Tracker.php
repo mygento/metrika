@@ -15,10 +15,9 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
     }
 
     /**
-    *  Get parameters for counter
-    *
-    * { id:111111, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, ecommerce:"dataLayer" }
-    */
+     *  Get parameters for counter
+     *
+     */
     public function getOptions()
     {
         $options = array();
@@ -38,121 +37,6 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         if (Mage::getStoreConfig('metrika/metrika/ecommerce')) {
             $options['ecommerce'] = (bool) Mage::getStoreConfig('metrika/metrika/ecommerce');
         }
-    }
-
-    public function getBasic1()
-    {
-        $options = array();
-        $options['id'] = intval(Mage::getStoreConfig('metrika/metrika/counter'));
-        if (Mage::getStoreConfig('metrika/metrika/webvisor')) {
-            $options['webvisor'] = (bool) Mage::getStoreConfig('metrika/metrika/webvisor');
-        }
-        if (Mage::getStoreConfig('metrika/metrika/clickmap')) {
-            $options['clickmap'] = (bool) Mage::getStoreConfig('metrika/metrika/clickmap');
-        }
-        if (Mage::getStoreConfig('metrika/metrika/tracklinks')) {
-            $options['trackLinks'] = (bool) Mage::getStoreConfig('metrika/metrika/tracklinks');
-        }
-        if (Mage::getStoreConfig('metrika/metrika/accuratetrackbounce')) {
-            $options['accurateTrackBounce'] = (bool) Mage::getStoreConfig('metrika/metrika/accuratetrackbounce');
-        }
-        return '
-        <!-- Yandex.Metrika counter -->
-        <script>
-            (function(d, w, c) {
-                (w[c] = w[c] || []).push(function() {
-                    try {
-                        w.yaCounter' . $options['id'] . ' = new Ya.Metrika(' . json_encode($options) . ');
-                ';
-    }
-
-    public function getBasic2()
-    {
-        return '} catch (e) {}});
-
-                var n = d.getElementsByTagName("script")[0],
-                    s = d.createElement("script"),
-                    f = function() {
-                    n.parentNode.insertBefore(s, n);
-                };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f);
-                } else {
-                    f();
-                }
-            })(document, window, "yandex_metrika_callbacks");
-        </script>
-        <noscript><div><img src="//mc.yandex.ru/watch/' . intval(Mage::getStoreConfig('metrika/metrika/counter')) . '" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-        ';
-    }
-
-    public function toDefault()
-    {
-        $html = '';
-        $html.=$this->getBasic1();
-        $html.=$this->getBasic2();
-        return $html;
-    }
-
-    public function toProduct()
-    {
-        $html = '';
-        $_product = Mage::registry('current_product');
-        $_category = Mage::registry('current_category');
-        $name = str_replace('"', '', $_product->getName());
-        $sku = str_replace('"', '', $_product->getSku());
-
-        $categories = array();
-        $cats = $_product->getCategoryIds();
-        foreach ($cats as $category_id) {
-            $_cat = Mage::getModel('catalog/category')->load($category_id);
-            $categories[] = $_cat->getName();
-        }
-        $html.=$this->getBasic1();
-        // add the first product to the order
-        $html.='product';
-
-        $html.=$this->getBasic2();
-
-        return $html;
-    }
-
-    public function toCategory()
-    {
-        $html = '';
-        $_category = Mage::registry('current_category');
-        $html.=$this->getBasic1();
-        $name = str_replace('"', '', $_category->getName());
-        $html.='category';
-        $html.=$this->getBasic2();
-        return $html;
-    }
-
-    public function toCart()
-    {
-        $html = '';
-        $html.=$this->getBasic1();
-        $options = array();
-        $session = Mage::getSingleton('checkout/session');
-        if (count($session->getQuote()->getAllItems())) {
-            $options['currency'] = Mage::app()->getStore()->getCurrentCurrencyCode();
-            $options['exchange_rate'] = 1;
-            $options['goods'] = array();
-            foreach ($session->getQuote()->getAllItems() as $item) {
-                $options['goods'][] = array('id' => $item->getSku(), 'name' => $item->getName(), 'price' => $item->getBaseCalculationPrice(), 'quantity' => $item->getQty());
-            }
-        }
-        $grandTotal = Mage::getModel('checkout/cart')->getQuote()->getGrandTotal();
-        if ($grandTotal) {
-            $options['order_price'] = $grandTotal;
-        }
-        $html.='w.yaCounter' . intval(Mage::getStoreConfig('metrika/metrika/counter')) . '.reachGoal(\'cart\',' . json_encode($options) . ');';
-        $html.=$this->getBasic2();
-        return $html;
     }
 
     public function toSuccess()
@@ -181,37 +65,11 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         return $html;
     }
 
-    protected function _1toHtml()
+    protected function _toHtml()
     {
-        $html = '';
-        if (Mage::getStoreConfig('metrika/metrika/enabled')) {
-            $type = '';
-            $type = $this->getData('viewpage');
-            switch ($type) {
-                /*
-                  case 'product':
-                  $html.=$this->toProduct();
-                  break;
-                  case 'category':
-                  $html.=$this->toCategory();
-                  break;
-                 */
-                case 'cart':
-                    $html.=$this->toCart();
-                    break;
-                case 'order':
-                    $html.=$this->toSuccess();
-                    break;
-                default:
-                    $html.=$this->toDefault();
-            }
+        if (!Mage::getStoreConfig('metrika/general/enabled')) {
+            return '';
         }
-
-        return $html;
-    }
-
-    protected function _prepareLayout()
-    {
-        return parent::_prepareLayout();
+        return parent::_toHtml();
     }
 }

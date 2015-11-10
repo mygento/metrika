@@ -6,19 +6,18 @@
  * @package    Mygento_Metrika
  * @copyright  Copyright © 2015 NKS LLC. (http://www.mygento.ru)
  */
-class Mygento_Metrika_Block_Tracker_Product extends Mage_Core_Block_Template
+class Mygento_Metrika_Block_Tracker_Success extends Mage_Core_Block_Template
 {
 
     protected function _construct()
     {
         parent::_construct();
-        $this->setTemplate('mygento/metrika/product.phtml');
+        $this->setTemplate('mygento/metrika/success.phtml');
     }
 
     protected function _toHtml()
     {
-        $currentProduct = Mage::registry('current_product');
-        if (!$currentProduct || !Mage::getStoreConfig('metrika/metrika/ecommerce')) {
+        if (!Mage::getStoreConfig('metrika/metrika/ecommerce')) {
             return '';
         }
         return parent::_toHtml();
