@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/mygento/metrika.svg?branch=1.1.0)](https://travis-ci.org/mygento/metrika)[![Code Climate](https://codeclimate.com/github/mygento/metrika/badges/gpa.svg)](https://codeclimate.com/github/mygento/metrika)
 <p>Модуль позволяет быстро и просто интегрировать счетчик метрики для интернет-магазина на Magento:</p>
 <ul>
-<li>Интеграция кода счетчика в конец страницы (before_body_end)</li>
+<li>Интеграция кода счетчика в конец страницы (after_body_start)</li>
 <li>Отчет «Параметры интернет-магазинов» http://help.yandex.ru/metrika/content/e-commerce.xml<br/>
 Для его настройки, нужно зайти в настройки счетчика, в секцию "Цели", и добавить две цели:<br/>
 1)<b>Название:</b> Корзина, <b>Собирать подробную статистику</b> - Да, <b>Условия: URL страницы</b>, url: содержит -> checkout/cart/, <b>Типы целей интернет-магазинов</b> - Да, эта цель описывает корзину на моём сайте<br/>
