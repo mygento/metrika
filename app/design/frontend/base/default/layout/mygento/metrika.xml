@@ -3,20 +3,14 @@
 <layout version="0.1.0">
 
     <default>
-        <reference name="before_body_end">
-            <block type="metrika/tracker" name="metrikatracker" as="metrikatracker"></block>
+        <reference name="after_body_start">
+            <block type="metrika/tracker" name="metrikatracker" as="metrikatracker" template="mygento/metrika/tracker.phtml"></block>
         </reference>
     </default>
 
     <catalog_product_view>
-        <reference name="before_body_end">
-            <remove name="metrikatracker"></remove>
-            <block type="metrika/tracker" name="metrikatrackerprod" as="metrikatrackerprod">
-                <action method="setData">
-                    <name>viewpage</name>
-                    <value>product</value>
-                </action>
-            </block>
+        <reference name="metrikatracker">
+            <block type="metrika/tracker_product" name="metrikatracker_track_product" />
         </reference>
     </catalog_product_view>
     

@@ -1,6 +1,11 @@
 .DS_Store
 /magento.py
+/magento.rb
 /vendor/
+/node_modules
+composer.lock
+
+#unit testing
 /app/code/community/EcomDev/
 /lib/EcomDev
 /lib/Spyc
@@ -8,3 +13,9 @@
 /shell/ecomdev-phpunit.php
 /app/etc/modules/EcomDev_PHPUnit.xml
 /app/etc/modules/EcomDev_PHPUnitTest.xml
+
+#base
+app/code/community/Mygento/Base
+app/etc/modules/Mygento_Base.xml
+app/locale/ru_RU/Mygento_Base.csv
+skin/adminhtml/default/default/images/mygento/base/logo.png

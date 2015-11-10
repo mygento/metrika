@@ -15,4 +15,9 @@ class Mygento_Metrika_Helper_Data extends Mage_Core_Helper_Abstract
             Mage::log($text);
         }
     }
+
+    public function getCode()
+    {
+        return Mage::getStoreConfig('metrika/metrika/counter');
+    }
 }

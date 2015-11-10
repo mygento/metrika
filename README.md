@@ -1,5 +1,5 @@
 <h2>Интеграция Яндекс.Метрики в Magento</h2>
-[![Build Status](https://travis-ci.org/mygento/metrika.svg?branch=1.1.0)](https://travis-ci.org/mygento/metrika)[![Code Climate](https://codeclimate.com/github/mygento/metrika/badges/gpa.svg)](https://codeclimate.com/github/mygento/metrika)
+[![Build Status](https://travis-ci.org/mygento/metrika.svg?branch=master)](https://travis-ci.org/mygento/metrika)[![Code Climate](https://codeclimate.com/github/mygento/metrika/badges/gpa.svg)](https://codeclimate.com/github/mygento/metrika)
 <p>Модуль позволяет быстро и просто интегрировать счетчик метрики для интернет-магазина на Magento:</p>
 <ul>
 <li>Интеграция кода счетчика в конец страницы (before_body_end)</li>

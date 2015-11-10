@@ -9,6 +9,37 @@
 class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
 {
 
+    public function getCode()
+    {
+        return Mage::helper('metrika')->getCode();
+    }
+
+    /**
+    *  Get parameters for counter
+    *
+    * { id:111111, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, ecommerce:"dataLayer" }
+    */
+    public function getOptions()
+    {
+        $options = array();
+        $options['id'] = $this->getCode();
+        if (Mage::getStoreConfig('metrika/metrika/webvisor')) {
+            $options['webvisor'] = (bool) Mage::getStoreConfig('metrika/metrika/webvisor');
+        }
+        if (Mage::getStoreConfig('metrika/metrika/clickmap')) {
+            $options['clickmap'] = (bool) Mage::getStoreConfig('metrika/metrika/clickmap');
+        }
+        if (Mage::getStoreConfig('metrika/metrika/tracklinks')) {
+            $options['trackLinks'] = (bool) Mage::getStoreConfig('metrika/metrika/tracklinks');
+        }
+        if (Mage::getStoreConfig('metrika/metrika/accuratetrackbounce')) {
+            $options['accurateTrackBounce'] = (bool) Mage::getStoreConfig('metrika/metrika/accuratetrackbounce');
+        }
+        if (Mage::getStoreConfig('metrika/metrika/ecommerce')) {
+            $options['ecommerce'] = (bool) Mage::getStoreConfig('metrika/metrika/ecommerce');
+        }
+    }
+
     public function getBasic1()
     {
         $options = array();
@@ -38,7 +69,7 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
     public function getBasic2()
     {
         return '} catch (e) {}});
-            
+
                 var n = d.getElementsByTagName("script")[0],
                     s = d.createElement("script"),
                     f = function() {
@@ -150,7 +181,7 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         return $html;
     }
 
-    protected function _toHtml()
+    protected function _1toHtml()
     {
         $html = '';
         if (Mage::getStoreConfig('metrika/metrika/enabled')) {
