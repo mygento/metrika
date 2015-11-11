@@ -1,4 +1,4 @@
-# Интеграция Яндекс.Метрики в Magento 2
+## Интеграция Яндекс.Метрики в Magento 2
 [![Build Status](https://travis-ci.org/mygento/metrika.svg?branch=2.0)](https://travis-ci.org/mygento/metrika)[![Code Climate](https://codeclimate.com/github/mygento/metrika/badges/gpa.svg)](https://codeclimate.com/github/mygento/metrika)[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mygento/metrika/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/mygento/metrika/?branch=2.0)
 <p>Модуль позволяет быстро и просто интегрировать счетчик метрики для интернет-магазина на Magento:</p>
 <ul>
