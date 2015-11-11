@@ -39,32 +39,6 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         }
     }
 
-    public function toSuccess()
-    {
-        $html = '';
-
-        //$session = Mage::getSingleton('checkout/session');
-        $lastid = Mage::getSingleton('checkout/type_onepage')->getCheckout()->getLastOrderId();
-        $order = Mage::getSingleton('sales/order');
-        $order->load($lastid);
-        $options = array();
-
-        $html.=$this->getBasic1();
-        $options['order_id'] = (string) $order->getIncrementId();
-        $options['currency'] = Mage::app()->getStore()->getCurrentCurrencyCode();
-        $options['exchange_rate'] = 1;
-        $options['goods'] = array();
-        $options['order_price'] = $order->getGrandTotal();
-
-        foreach ($order->getAllVisibleItems() as $item) {
-            $options['goods'][] = array('id' => $item->getSku(), 'name' => $item->getName(), 'price' => $item->getPrice(), 'quantity' => (int) $item->getQtyOrdered());
-        }
-        $html.='w.yaCounter' . intval(Mage::getStoreConfig('metrika/metrika/counter')) . '.params(' . json_encode($options) . ');';
-
-        $html.=$this->getBasic2();
-        return $html;
-    }
-
     protected function _toHtml()
     {
         if (!Mage::getStoreConfig('metrika/general/enabled')) {
