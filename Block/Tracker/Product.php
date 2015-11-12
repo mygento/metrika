@@ -29,6 +29,6 @@ class Product extends \Mygento\Metrika\Block\Tracker
                 ]
             ]
         ];
-        return '<script>dataLayer.push(' . $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($data) . ');</script>;';
+        return '<script>dataLayer.push(' . $this->_jsonHelper->jsonEncode($data) . ');</script>';
     }
 }

@@ -8,6 +8,24 @@ class Tracker extends \Magento\Framework\View\Element\Template
 {
 
     /**
+     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Magento\Framework\Json\Helper\Data $jsonHelper
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Framework\Json\Helper\Data $jsonHelper,
+        array $data = []
+    ) {
+        $this->_jsonHelper = $jsonHelper;
+        $this->_coreRegistry = $coreRegistry;
+        parent::__construct($context, $data);
+    }
+
+
+    /**
      *  Get parameters for counter
      *
      * @return array
