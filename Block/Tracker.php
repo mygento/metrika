@@ -31,6 +31,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         if ($this->getConfig('metrika/general/ecommerce')) {
             $options['ecommerce'] = (bool) $this->getConfig('metrika/general/ecommerce');
         }
+        return $options
     }
 
     /**
