@@ -19,13 +19,5 @@
         "psr-4": {
             "Mygento\\Metrika\\": ""
         }
-    },
-    "extra": {
-        "map": [
-            [
-                "*",
-                "Mygento/Metrika"
-            ]
-        ]
     }
 }
