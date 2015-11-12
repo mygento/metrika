@@ -1,5 +1,4 @@
 <?php
-
 namespace Mygento\Metrika\Block;
 
 /**
@@ -7,6 +6,7 @@ namespace Mygento\Metrika\Block;
  */
 class Tracker extends \Magento\Framework\View\Element\Template
 {
+
     /**
      *  Get parameters for counter
      *
@@ -31,7 +31,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         if ($this->getConfig('metrika/general/ecommerce')) {
             $options['ecommerce'] = (bool) $this->getConfig('metrika/general/ecommerce');
         }
-        return $options
+        return $options;
     }
 
     /**
@@ -45,15 +45,15 @@ class Tracker extends \Magento\Framework\View\Element\Template
     }
 
     /**
-     * Render GA tracking scripts
+     * Render Metrika tracking scripts
      *
      * @return string
      */
     protected function _toHtml()
     {
-        //if(!$this->getConfig('metrika/general/enabled')){
-        //    return '';
-        //}
+        if (!$this->getConfig('metrika/general/enabled')) {
+            return '';
+        }
         return parent::_toHtml();
     }
 
