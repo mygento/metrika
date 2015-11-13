@@ -15,15 +15,17 @@ class Mygento_Metrika_Model_Observer
         $params = $observer->getRequest()->getParams();
 
         $data = array(
-            "ecommerce" => array(
-                "add" => array(
-                    "products" => array(
-                        "id" => $product->getSku(),
-                        "name" => $product->getName(),
-                        "price" => $product->getPrice(),
-                        //"brand" => "Яндекс / Яndex",
-                        //"category" => "Аксессуары/Сумки",
-                        "quantity" => ($params['qty'] == 0 ? 1 : $params['qty']),
+            array(
+                "ecommerce" => array(
+                    "add" => array(
+                        "products" => array(
+                            "id" => $product->getSku(),
+                            "name" => $product->getName(),
+                            "price" => $product->getPrice(),
+                            //"brand" => "Яндекс / Яndex",
+                            //"category" => "Аксессуары/Сумки",
+                            "quantity" => ($params['qty'] == 0 ? 1 : $params['qty']),
+                        )
                     )
                 )
             )
@@ -35,11 +37,13 @@ class Mygento_Metrika_Model_Observer
     {
         $product = $observer->getQuoteItem()->getProduct();
         $data = array(
-            "ecommerce" => array(
-                "remove" => array(
-                    "products" => array(
-                        "id" => $product->getSku(),
-                        "name" => $product->getName(),
+            array(
+                "ecommerce" => array(
+                    "remove" => array(
+                        "products" => array(
+                            "id" => $product->getSku(),
+                            "name" => $product->getName(),
+                        )
                     )
                 )
             )
