@@ -1,4 +1,5 @@
 <?php
+
 namespace Mygento\Metrika\Block;
 
 /**
@@ -14,16 +15,13 @@ class Tracker extends \Magento\Framework\View\Element\Template
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\Json\Helper\Data $jsonHelper,
-        array $data = []
-    ) {
+    \Magento\Framework\View\Element\Template\Context $context, \Magento\Framework\Registry $coreRegistry, \Magento\Framework\Json\Helper\Data $jsonHelper, array $data = []
+    )
+    {
         $this->_jsonHelper = $jsonHelper;
         $this->_coreRegistry = $coreRegistry;
         parent::__construct($context, $data);
     }
-
 
     /**
      *  Get parameters for counter

@@ -1,4 +1,6 @@
-<?php namespace Mygento\Metrika\Block\Tracker;
+<?php
+
+namespace Mygento\Metrika\Block\Tracker;
 
 /**
  * Metrika Page Block
@@ -29,6 +31,6 @@ class Product extends \Mygento\Metrika\Block\Tracker
                 ]
             ]
         ];
-        return '<script>dataLayer.push(' . $this->_jsonHelper->jsonEncode($data) . ');</script>';
+        return '<script>dataLayer.push(' . $this->_jsonHelper->jsonEncode($data) . ');</script>' . "\n";
     }
 }
