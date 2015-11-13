@@ -9,18 +9,36 @@
 class Mygento_Metrika_Block_Tracker_Product extends Mage_Core_Block_Template
 {
 
-    protected function _construct()
-    {
-        parent::_construct();
-        $this->setTemplate('mygento/metrika/product.phtml');
-    }
-
     protected function _toHtml()
     {
         $currentProduct = Mage::registry('current_product');
         if (!$currentProduct || !Mage::getStoreConfig('metrika/metrika/ecommerce')) {
             return '';
         }
-        return parent::_toHtml();
+
+        $prod_data = array(
+            'id' => $currentProduct->getSku(),
+            'name' => $currentProduct->getName(),
+            'price' => round($currentProduct->getFinalPrice(), 2),
+        );
+        if (Mage::registry('current_category')) {
+            // TODO CATEGORY BREADCRUMBS
+            // "category": "Одежда/Мужская одежда/Футболки",
+            $prod_data['category'] = Mage::registry('current_category')->getName();
+        }
+        // TODO
+        //'brand' => '',
+        //'variant' => '',
+        $data = array(
+            'ecommerce' => array(
+                'detail' => array(
+                    'products' => array(
+                        $prod_data
+                    )
+                )
+            )
+        );
+
+        return '<script>dataLayer.push(' . Mage::helper('core')->jsonEncode($data) . ');</script>' . "\n";
     }
 }
