@@ -13,7 +13,7 @@ class Mygento_Metrika_Model_Observer
     {
         $product = $observer->getProduct();
         $params = $observer->getRequest()->getParams();
-        
+
         $data = array(
             "ecommerce" => array(
                 "add" => array(
@@ -23,7 +23,23 @@ class Mygento_Metrika_Model_Observer
                         "price" => $product->getPrice(),
                         //"brand" => "Яндекс / Яndex",
                         //"category" => "Аксессуары/Сумки",
-                        "quantity" => ($params['qty'] == 0 ?  1 : $params['qty']),
+                        "quantity" => ($params['qty'] == 0 ? 1 : $params['qty']),
+                    )
+                )
+            )
+        );
+        Mage::getSingleton('core/session')->setMetrika($data);
+    }
+
+    public function removeFromCartComplete($observer)
+    {
+        $product = $observer->getQuoteItem()->getProduct();
+        $data = array(
+            "ecommerce" => array(
+                "remove" => array(
+                    "products" => array(
+                        "id" => $product->getSku(),
+                        "name" => $product->getName(),
                     )
                 )
             )

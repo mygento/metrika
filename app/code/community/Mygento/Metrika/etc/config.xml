@@ -57,6 +57,14 @@
                     </metrika_add_to_cart>
                 </observers>
             </checkout_cart_add_product_complete>
+            <sales_quote_remove_item>
+                <observers>
+                    <metrika_remove_from_cart>
+                        <class>metrika/observer</class>
+                        <method>removeFromCartComplete</method>
+                    </metrika_remove_from_cart>
+                </observers>
+            </sales_quote_remove_item>
         </events>
     </global>
     <adminhtml>
