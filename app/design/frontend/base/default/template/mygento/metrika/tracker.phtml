@@ -1,8 +1,15 @@
-<?php
-$code = $this->getCode();
-$options = $this->getOptions();
-?>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">window.dataLayer = window.dataLayer || []; (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter<?php echo $code;?> = new Ya.Metrika(<?php echo json_encode($options);?>); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/<?php echo $code;?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<?php echo $this->getChildHtml(); ?>
+<script type="text/javascript">window.dataLayer = window.dataLayer || []; (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter<?php echo $this->getCode(); ?> = new Ya.Metrika(<?php echo Mage::helper('core')->jsonEncode($this->getOptions()); ?>); } catch (e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/<?php echo $this->getCode(); ?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <?php
+    $dynamic = $this->getDynamicTrackers();
+    if (count($dynamic) > 0) {
+        echo '<script type="text/javascript">';
+        foreach ($dynamic as $d) {
+            echo 'dataLayer.push(' . Mage::helper('core')->jsonEncode($d) . ');'."\n";
+        }
+        echo '</script>';
+    }
+    echo $this->getChildHtml();
+
+    ?>
 <!-- /Yandex.Metrika counter -->

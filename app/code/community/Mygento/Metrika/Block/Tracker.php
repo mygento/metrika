@@ -9,14 +9,32 @@
 class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
 {
 
+    /**
+     * Get Tracking code ID
+     * @return string
+     */
     public function getCode()
     {
         return Mage::helper('metrika')->getCode();
     }
 
     /**
+     * Get Dynamic tracker through events
+     * @return array
+     */
+    public function getDynamicTrackers()
+    {
+        $data = Mage::getSingleton('core/session')->getMetrika();
+        if ($data && is_array($data)) {
+            Mage::getSingleton('core/session')->unsMetrika();
+            return $data;
+        }
+        return array();
+    }
+
+    /**
      *  Get parameters for counter
-     *
+     *  @return array
      */
     public function getOptions()
     {
@@ -37,6 +55,8 @@ class Mygento_Metrika_Block_Tracker extends Mage_Core_Block_Template
         if (Mage::getStoreConfig('metrika/metrika/ecommerce')) {
             $options['ecommerce'] = (bool) Mage::getStoreConfig('metrika/metrika/ecommerce');
         }
+
+        return $options;
     }
 
     protected function _toHtml()

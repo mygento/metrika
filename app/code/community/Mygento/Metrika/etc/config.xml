@@ -48,6 +48,16 @@
                 <class>Mygento_Metrika_Helper</class>
             </metrika>
         </helpers>
+        <events>
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <metrika_add_to_cart>
+                        <class>metrika/observer</class>
+                        <method>addToCartComplete</method>
+                    </metrika_add_to_cart>
+                </observers>
+            </checkout_cart_add_product_complete>
+        </events>
     </global>
     <adminhtml>
         <acl>

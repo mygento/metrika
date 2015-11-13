@@ -26,7 +26,7 @@ class Mygento_Metrika_Block_Tracker_Product extends Mage_Core_Block_Template
             // "category": "Одежда/Мужская одежда/Футболки",
             $prod_data['category'] = Mage::registry('current_category')->getName();
         }
-        // TODO
+        // TODO brand and variant
         //'brand' => '',
         //'variant' => '',
         $data = array(
