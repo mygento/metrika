@@ -3,9 +3,22 @@
     "type": "magento-module",
     "license": "OSL-3.0",
     "homepage": "https://github.com/mygento/metrika",
-    "description": "Metrika Module",
+    "description": "Yandex Metrika Integration to Magento",
+    "authors": [
+        {
+            "name": "Nikita Tarasov",
+            "email": "nikita@mygento.net",
+            "homepage": "http://www.mygento.net/",
+            "role": "Developer"
+        },
+        {
+            "name": "Mygento",
+            "email": "connect@mygento.net",
+            "homepage": "http://www.mygento.net/"
+        }
+    ],
     "require": {
-        "magento-hackathon/magento-composer-installer": "*"
+        "magento-hackathon/magento-composer-installer": "3.*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*",
@@ -17,12 +30,6 @@
         "jakub-onderka/php-console-highlighter": "0.*",
         "phpmd/phpmd": "@stable"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://mygento.github.io/packages"
-        }
-    ],
     "extra": {
         "magento-root-dir": "."
     }
