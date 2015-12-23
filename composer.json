@@ -17,6 +17,13 @@
             "homepage": "http://www.mygento.net/"
         }
     ],
+    "keywords": [
+        "magento",
+        "metrika",
+        "метрика",
+        "яндекс",
+        "yandex"
+    ],
     "require": {
         "magento-hackathon/magento-composer-installer": "3.*"
     },
@@ -31,6 +38,7 @@
         "phpmd/phpmd": "@stable"
     },
     "extra": {
-        "magento-root-dir": "."
+        "magento-root-dir": ".",
+        "with-bootstrap-patch": false
     }
 }
