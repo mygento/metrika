@@ -4,6 +4,19 @@
     "license": "OSL-3.0",
     "homepage": "https://github.com/mygento/metrika",
     "description": "Yandex Metrika Integration to Magento",
+    "authors": [
+        {
+            "name": "Nikita Tarasov",
+            "email": "nikita@mygento.net",
+            "homepage": "http://www.mygento.net/",
+            "role": "Developer"
+        },
+        {
+            "name": "Mygento",
+            "email": "connect@mygento.net",
+            "homepage": "http://www.mygento.net/"
+        }
+    ],
     "keywords": [
         "magento",
         "metrika",
