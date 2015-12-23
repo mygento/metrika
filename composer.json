@@ -25,7 +25,8 @@
         "yandex"
     ],
     "require": {
-        "magento-hackathon/magento-composer-installer": "3.*"
+        "magento-hackathon/magento-composer-installer": "3.*",
+        "mygento/base": "1.8"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*",
