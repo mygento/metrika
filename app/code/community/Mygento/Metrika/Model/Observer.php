@@ -59,7 +59,9 @@ class Mygento_Metrika_Model_Observer
         if ('frontend' == $action->getLayout()->getArea()) {
             /** @var Mage_Core_Controller_Response_Http $response */
             $response = $action->getResponse();
+            // @codingStandardsIgnoreStart
             $url = parse_url(Mage::helper('core/http')->getHttpReferer());
+            // codingStandardsIgnoreEnd
             if ($url['host'] == 'webvisor.com') {
                 $response->clearHeader('X-Frame-Options');
             }
