@@ -50,4 +50,21 @@ class Mygento_Metrika_Model_Observer
         );
         Mage::getSingleton('core/session')->setMetrika($data);
     }
+
+    public function removeDomainPolicyHeader($observer)
+    {
+        /** @var Mage_Core_Controller->getCurrentAreaDomainPolicy_Varien_Action $action */
+        $action = $observer->getControllerAction();
+
+        if ('frontend' == $action->getLayout()->getArea()) {
+            /** @var Mage_Core_Controller_Response_Http $response */
+            $response = $action->getResponse();
+            $url = parse_url(Mage::helper('core/http')->getHttpReferer());
+            if ($url['host'] == 'webvisor.com') {
+                $response->clearHeader('X-Frame-Options');
+            }
+        }
+
+        return $this;
+    }
 }

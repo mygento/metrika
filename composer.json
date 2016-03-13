@@ -8,18 +8,19 @@
         {
             "name": "Nikita Tarasov",
             "email": "nikita@mygento.net",
-            "homepage": "http://www.mygento.net/",
+            "homepage": "http://www.mygento.ru/",
             "role": "Developer"
         },
         {
             "name": "Mygento",
             "email": "connect@mygento.net",
-            "homepage": "http://www.mygento.net/"
+            "homepage": "http://www.mygento.ru/"
         }
     ],
     "keywords": [
         "magento",
         "metrika",
+        "webvisor",
         "метрика",
         "яндекс",
         "yandex"

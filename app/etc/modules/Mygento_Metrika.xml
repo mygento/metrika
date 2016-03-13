@@ -4,6 +4,9 @@
         <Mygento_Metrika>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Core />
+            </depends>
         </Mygento_Metrika>
     </modules>
 </config>
