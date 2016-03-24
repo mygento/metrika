@@ -62,7 +62,7 @@ class Mygento_Metrika_Model_Observer
             // @codingStandardsIgnoreStart
             $url = parse_url(Mage::helper('core/http')->getHttpReferer());
             // codingStandardsIgnoreEnd
-            if ($url['host'] == 'webvisor.com') {
+            if ($url && isset($url['host']) && $url['host'] == 'webvisor.com') {
                 $response->clearHeader('X-Frame-Options');
             }
         }
