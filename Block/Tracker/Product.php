@@ -15,22 +15,25 @@ class Product extends \Mygento\Metrika\Block\Tracker
      */
     protected function _toHtml()
     {
-        $currentProduct = $this->_coreRegistry->registry('current_product');
-        if (!$currentProduct || !$this->getConfig('metrika/general/ecommerce')) {
+        $currentProduct = $this->getRegistry('current_product');
+        if (!$currentProduct || !$this->getConfig('general/ecommerce')) {
             return '';
         }
-        $prod_data = [
+        $prodData = [
             'id' => $currentProduct->getSku(),
             'name' => $currentProduct->getName(),
             'price' => round($currentProduct->getFinalPrice(), 2),
         ];
+        if ($this->getRegistry('current_category')) {
+            $prodData['category'] = $this->getRegistry('current_category')->getName();
+        }
         $data = [
             'ecommerce' => [
                 'detail' => [
-                    'products' => [$prod_data]
+                    'products' => [$prodData]
                 ]
             ]
         ];
-        return '<script>dataLayer.push(' . $this->_jsonHelper->jsonEncode($data) . ');</script>' . "\n";
+        return '<script>dataLayer.push(' . $this->jsonEncode($data) . ');</script>' . "\n";
     }
 }

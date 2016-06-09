@@ -7,6 +7,26 @@ namespace Mygento\Metrika\Block;
  */
 class Tracker extends \Magento\Framework\View\Element\Template
 {
+    /*
+     *  Json
+     *
+     *  @var \Magento\Framework\Json\Helper\Data
+     */
+    protected $_jsonHelper;
+
+    /*
+     *  Registry
+     *
+     *  @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry;
+
+    /**
+     * Session
+     *
+     * @var \Magento\Framework\Session\SessionManagerInterface
+     */
+    protected $_session;
 
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -15,12 +35,30 @@ class Tracker extends \Magento\Framework\View\Element\Template
      * @param array $data
      */
     public function __construct(
-    \Magento\Framework\View\Element\Template\Context $context, \Magento\Framework\Registry $coreRegistry, \Magento\Framework\Json\Helper\Data $jsonHelper, array $data = []
-    )
-    {
+        \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Framework\Json\Helper\Data $jsonHelper,
+        array $data = []
+    ) {
         $this->_jsonHelper = $jsonHelper;
         $this->_coreRegistry = $coreRegistry;
+        $this->_session = $context->getSession();
         parent::__construct($context, $data);
+    }
+
+
+    /**
+     * Get Dynamic tracker through events
+     * @return array
+     */
+    public function getDynamicTrackers()
+    {
+        $data = $this->_session->getMetrika();
+        if ($data && is_array($data)) {
+            $this->_session->unsMetrika();
+            return $data;
+        }
+        return array();
     }
 
     /**
@@ -32,20 +70,20 @@ class Tracker extends \Magento\Framework\View\Element\Template
     {
         $options = array();
         $options['id'] = $this->getCode();
-        if ($this->getConfig('metrika/general/webvisor')) {
-            $options['webvisor'] = (bool) $this->getConfig('metrika/general/webvisor');
+        if ($this->getConfig('general/webvisor')) {
+            $options['webvisor'] = (bool)$this->getConfig('general/webvisor');
         }
-        if ($this->getConfig('metrika/general/clickmap')) {
-            $options['clickmap'] = (bool) $this->getConfig('metrika/general/clickmap');
+        if ($this->getConfig('general/clickmap')) {
+            $options['clickmap'] = (bool)$this->getConfig('general/clickmap');
         }
-        if ($this->getConfig('metrika/general/tracklinks')) {
-            $options['trackLinks'] = (bool) $this->getConfig('metrika/general/tracklinks');
+        if ($this->getConfig('general/tracklinks')) {
+            $options['trackLinks'] = (bool)$this->getConfig('general/tracklinks');
         }
-        if ($this->getConfig('metrika/general/accuratetrackbounce')) {
-            $options['accurateTrackBounce'] = (bool) $this->getConfig('metrika/general/accuratetrackbounce');
+        if ($this->getConfig('general/accuratetrackbounce')) {
+            $options['accurateTrackBounce'] = (bool)$this->getConfig('general/accuratetrackbounce');
         }
-        if ($this->getConfig('metrika/general/ecommerce')) {
-            $options['ecommerce'] = (bool) $this->getConfig('metrika/general/ecommerce');
+        if ($this->getConfig('general/ecommerce')) {
+            $options['ecommerce'] = (bool)$this->getConfig('general/ecommerce');
         }
         return $options;
     }
@@ -57,7 +95,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     public function getCode()
     {
-        return $this->getConfig('metrika/general/counter');
+        return $this->getConfig('general/counter');
     }
 
     /**
@@ -67,7 +105,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     protected function _toHtml()
     {
-        if (!$this->getConfig('metrika/general/enabled')) {
+        if (!$this->getConfig('general/enabled')) {
             return '';
         }
         return parent::_toHtml();
@@ -81,6 +119,29 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     public function getConfig($path)
     {
-        return $this->_scopeConfig->getValue($path, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        return $this->_scopeConfig->getValue(
+            'metrika/' . $path,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get data from Registry
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function getRegistry($name)
+    {
+        return $this->_coreRegistry->registry($name);
+    }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    public function jsonEncode($data)
+    {
+        return $this->_jsonHelper->jsonEncode($data);
     }
 }

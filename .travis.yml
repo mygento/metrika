@@ -1,28 +1,20 @@
 language: php
 
 php:
-  - 5.4
   - 5.5
   - 5.6
+  - 7.0
+  - hhvm
 
 matrix:
   allow_failures:
-    - php: 5.6
+    - php: 7.0
     - php: hhvm
-
-env:
-  matrix:
-    - MAGENTO_VERSION=magento-mirror-1.9.2.2
-    - MAGENTO_VERSION=magento-mirror-1.8.1.0
-    - MAGENTO_VERSION=magento-mirror-1.7.0.2
 
 before_script:
   - composer self-update
   - composer install --no-interaction
   - php vendor/bin/phpcs --config-set ignore_warnings_on_exit 1
-  - sed -i 's/curl/banan/g' vendor/magento-ecg/coding-standard/Ecg/Sniffs/Security/ForbiddenFunctionSniff.php
-  - sed -i 's/pathinfo/ananas/g' vendor/magento-ecg/coding-standard/Ecg/Sniffs/Security/ForbiddenFunctionSniff.php
-  - sed -i 's/tempnam/cocos/g' vendor/magento-ecg/coding-standard/Ecg/Sniffs/Security/ForbiddenFunctionSniff.php
   
 script:
   - php vendor/bin/parallel-lint --exclude vendor .
