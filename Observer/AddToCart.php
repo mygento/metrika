@@ -35,7 +35,7 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         $request = $observer->getEvent()->getRequest();
         $params = $request->getParams();
         if (!isset($params['qty']) || $params['qty'] == 0) {
-            $qty = 0;
+            $qty = 1;
         } else {
             $qty = $params['qty'];
         }
