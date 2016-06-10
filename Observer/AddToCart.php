@@ -34,7 +34,11 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         $product = $observer->getEvent()->getProduct();
         $request = $observer->getEvent()->getRequest();
         $params = $request->getParams();
-        $qty = (!isset($params['qty']) || $params['qty'] == 0 ? 1 : $params['qty']);
+        if (!isset($params['qty']) || $params['qty'] == 0) {
+            $qty = 0;
+        } else {
+            $qty = $params['qty'];
+        }
         $data = [
             'ecommerce' => [
                 'add' => [
@@ -60,10 +64,10 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
      */
     protected function setSessionData($data)
     {
-        $session_data = $this->_session->getMetrika();
-        if ($session_data && is_array($session_data)) {
-            $session_data[] = $data;
-            return $this->_session->setMetrika($session_data);
+        $sessionData = $this->_session->getMetrika();
+        if ($sessionData && is_array($sessionData)) {
+            $sessionData[] = $data;
+            return $this->_session->setMetrika($sessionData);
         }
         return $this->_session->setMetrika([$data]);
     }

@@ -7,17 +7,17 @@ namespace Mygento\Metrika\Block;
  */
 class Tracker extends \Magento\Framework\View\Element\Template
 {
-    /*
+    /**
      *  Json
      *
-     *  @var \Magento\Framework\Json\Helper\Data
+     * @var \Magento\Framework\Json\Helper\Data
      */
     protected $_jsonHelper;
 
-    /*
+    /**
      *  Registry
      *
-     *  @var \Magento\Framework\Registry
+     * @var \Magento\Framework\Registry
      */
     protected $_coreRegistry;
 
@@ -58,7 +58,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
             $this->_session->unsMetrika();
             return $data;
         }
-        return array();
+        return [];
     }
 
     /**
@@ -68,22 +68,23 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     public function getOptions()
     {
-        $options = array();
+        $options = [];
         $options['id'] = $this->getCode();
-        if ($this->getConfig('general/webvisor')) {
-            $options['webvisor'] = (bool)$this->getConfig('general/webvisor');
+        if ($this->getConfig('webvisor')) {
+            $options['webvisor'] = (bool)$this->getConfig('webvisor');
         }
-        if ($this->getConfig('general/clickmap')) {
-            $options['clickmap'] = (bool)$this->getConfig('general/clickmap');
+        if ($this->getConfig('clickmap')) {
+            $options['clickmap'] = (bool)$this->getConfig('clickmap');
         }
-        if ($this->getConfig('general/tracklinks')) {
-            $options['trackLinks'] = (bool)$this->getConfig('general/tracklinks');
+        if ($this->getConfig('tracklinks')) {
+            $options['trackLinks'] = (bool)$this->getConfig('tracklinks');
         }
-        if ($this->getConfig('general/accuratetrackbounce')) {
-            $options['accurateTrackBounce'] = (bool)$this->getConfig('general/accuratetrackbounce');
+        if ($this->getConfig('accuratetrackbounce')) {
+            $options['accurateTrackBounce'] =
+                (bool)$this->getConfig('accuratetrackbounce');
         }
-        if ($this->getConfig('general/ecommerce')) {
-            $options['ecommerce'] = (bool)$this->getConfig('general/ecommerce');
+        if ($this->getConfig('ecommerce')) {
+            $options['ecommerce'] = (bool)$this->getConfig('ecommerce');
         }
         return $options;
     }
@@ -95,7 +96,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     public function getCode()
     {
-        return $this->getConfig('general/counter');
+        return $this->getConfig('counter');
     }
 
     /**
@@ -105,7 +106,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     protected function _toHtml()
     {
-        if (!$this->getConfig('general/enabled')) {
+        if (!$this->getConfig('enabled')) {
             return '';
         }
         return parent::_toHtml();
@@ -120,7 +121,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
     public function getConfig($path)
     {
         return $this->_scopeConfig->getValue(
-            'metrika/' . $path,
+            'metrika/general/' . $path,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }

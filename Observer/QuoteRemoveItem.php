@@ -54,10 +54,10 @@ class QuoteRemoveItem implements \Magento\Framework\Event\ObserverInterface
      */
     protected function setSessionData($data)
     {
-        $session_data = $this->_session->getMetrika();
-        if ($session_data && is_array($session_data)) {
-            $session_data[] = $data;
-            return $this->_session->setMetrika($session_data);
+        $sessionData = $this->_session->getMetrika();
+        if ($sessionData && is_array($sessionData)) {
+            $sessionData[] = $data;
+            return $this->_session->setMetrika($sessionData);
         }
         return $this->_session->setMetrika([$data]);
     }

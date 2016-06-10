@@ -32,7 +32,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
     protected function _toHtml()
     {
         $order = $this->_checkoutSession->getLastRealOrder();
-        if (!$order->getIncrementId() || !$this->getConfig('general/ecommerce')) {
+        if (!$order->getIncrementId() || !$this->getConfig('ecommerce')) {
             return '';
         }
         $prodData = [];
@@ -55,6 +55,8 @@ class Success extends \Mygento\Metrika\Block\Tracker
                 ]
             ]
         ];
-        return '<script>dataLayer.push(' . $this->jsonEncode($data) . ');</script>' . "\n";
+        return '<script>dataLayer.push(' .
+        $this->jsonEncode($data) .
+        ');</script>' . "\n";
     }
 }

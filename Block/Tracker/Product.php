@@ -16,7 +16,7 @@ class Product extends \Mygento\Metrika\Block\Tracker
     protected function _toHtml()
     {
         $currentProduct = $this->getRegistry('current_product');
-        if (!$currentProduct || !$this->getConfig('general/ecommerce')) {
+        if (!$currentProduct || !$this->getConfig('ecommerce')) {
             return '';
         }
         $prodData = [
@@ -25,7 +25,8 @@ class Product extends \Mygento\Metrika\Block\Tracker
             'price' => round($currentProduct->getFinalPrice(), 2),
         ];
         if ($this->getRegistry('current_category')) {
-            $prodData['category'] = $this->getRegistry('current_category')->getName();
+            $prodData['category'] = $this->getRegistry('current_category')
+                ->getName();
         }
         $data = [
             'ecommerce' => [
@@ -34,6 +35,8 @@ class Product extends \Mygento\Metrika\Block\Tracker
                 ]
             ]
         ];
-        return '<script>dataLayer.push(' . $this->jsonEncode($data) . ');</script>' . "\n";
+        return '<script>dataLayer.push(' .
+        $this->jsonEncode($data) .
+        ');</script>' . "\n";
     }
 }
