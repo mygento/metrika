@@ -14,7 +14,7 @@ class Mygento_Metrika_Model_Observer
         $product = $observer->getProduct();
         $params = $observer->getRequest()->getParams();
         if (!isset($params['qty']) || $params['qty'] == 0) {
-            $qty = 0;
+            $qty = 1;
         } else {
             $qty = $params['qty'];
         }
