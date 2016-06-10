@@ -13,42 +13,42 @@ class Mygento_Metrika_Model_Observer
     {
         $product = $observer->getProduct();
         $params = $observer->getRequest()->getParams();
-
+        if (!isset($params['qty']) || $params['qty'] == 0) {
+            $qty = 0;
+        } else {
+            $qty = $params['qty'];
+        }
         $data = array(
-            array(
-                "ecommerce" => array(
-                    "add" => array(
-                        "products" => array(
-                            "id" => $product->getSku(),
-                            "name" => $product->getName(),
-                            "price" => $product->getPrice(),
-                            //"brand" => "Яндекс / Яndex",
-                            //"category" => "Аксессуары/Сумки",
-                            "quantity" => ($params['qty'] == 0 ? 1 : $params['qty']),
-                        )
+            'ecommerce' => array(
+                'add' => array(
+                    'products' => array(
+                        'id' => $product->getSku(),
+                        'name' => $product->getName(),
+                        'price' => $product->getPrice(),
+                        //'brand' => 'Яндекс / Яndex',
+                        //'category' => 'Аксессуары/Сумки',
+                        'quantity' => $qty,
                     )
                 )
             )
         );
-        Mage::getSingleton('core/session')->setMetrika($data);
+        Mage::helper('metrika')->setSessionData($data);
     }
 
     public function removeFromCartComplete($observer)
     {
         $product = $observer->getQuoteItem()->getProduct();
         $data = array(
-            array(
-                "ecommerce" => array(
-                    "remove" => array(
-                        "products" => array(
-                            "id" => $product->getSku(),
-                            "name" => $product->getName(),
-                        )
+            'ecommerce' => array(
+                'remove' => array(
+                    'products' => array(
+                        'id' => $product->getSku(),
+                        'name' => $product->getName(),
                     )
                 )
             )
         );
-        Mage::getSingleton('core/session')->setMetrika($data);
+        Mage::helper('metrika')->setSessionData($data);
     }
 
     public function removeDomainPolicyHeader($observer)

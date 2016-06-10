@@ -20,4 +20,20 @@ class Mygento_Metrika_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig('metrika/metrika/counter');
     }
+
+    /**
+     * Set or Update Session Data
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function setSessionData($data)
+    {
+        $sessionData = Mage::getSingleton('core/session')->getMetrika();
+        if ($sessionData && is_array($sessionData)) {
+            $sessionData[] = $data;
+            return Mage::getSingleton('core/session')->setMetrika($sessionData);
+        }
+        return Mage::getSingleton('core/session')->setMetrika(array($data));
+    }
 }
