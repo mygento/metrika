@@ -55,7 +55,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
                 ]
             ]
         ];
-        return '<script>dataLayer.push(' .
+        return '<script>' . $this->getConfig('container_name') . '.push(' .
         $this->jsonEncode($data) .
         ');</script>' . "\n";
     }

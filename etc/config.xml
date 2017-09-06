@@ -4,6 +4,7 @@
         <metrika>
             <general>
                 <enabled>0</enabled>
+                <container_name>dataLayer</container_name>
                 <debug>0</debug>
                 <webvisor>1</webvisor>
                 <clickmap>1</clickmap>

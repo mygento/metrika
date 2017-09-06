@@ -22,6 +22,13 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
+                <field id="container_name" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Data container name</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
                 <field id="webvisor" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Webvisor</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
