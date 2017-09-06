@@ -83,6 +83,9 @@ class Tracker extends \Magento\Framework\View\Element\Template
             $options['accurateTrackBounce'] =
                 (bool)$this->getConfig('accuratetrackbounce');
         }
+        if ($this->getConfig('noindex')) {
+            $options['ut'] = 'noindex';
+        }
         if ($this->getConfig('ecommerce')) {
             $options['ecommerce'] = $this->getConfig('container_name');
         }

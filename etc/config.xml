@@ -11,6 +11,7 @@
                 <tracklinks>1</tracklinks>
                 <trackhash>0</trackhash>
                 <accuratetrackbounce>0</accuratetrackbounce>
+                <noindex>0</noindex>
                 <ecommerce>1</ecommerce>
             </general>
         </metrika>
