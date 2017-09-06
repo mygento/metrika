@@ -1,7 +1,8 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
+ * @author Mygento Team
+ * @copyright 2017 Mygento (https://www.mygento.ru)
+ * @package Mygento_Metrika
  */
 
 namespace Mygento\Metrika\Observer;
@@ -18,13 +19,13 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
     protected $_session;
-
+    
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session
     ) {
         $this->_session = $session;
     }
-
+    
     /**
      * @param Observer $observer
      * @return void
@@ -55,7 +56,7 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         ];
         $this->setSessionData($data);
     }
-
+    
     /**
      * Set or Update Session Data
      *

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Mygento Team
+ * @copyright 2017 Mygento (https://www.mygento.ru)
+ * @package Mygento_Metrika
+ */
+
 namespace Mygento\Metrika\Block\Tracker;
 
 /**
@@ -7,7 +13,7 @@ namespace Mygento\Metrika\Block\Tracker;
  */
 class Product extends \Mygento\Metrika\Block\Tracker
 {
-
+    
     /**
      * Render Metrika tracking product scripts
      *
@@ -36,7 +42,7 @@ class Product extends \Mygento\Metrika\Block\Tracker
             ]
         ];
         return '<script>' . $this->getConfig('container_name') . '.push(' .
-        $this->jsonEncode($data) .
-        ');</script>' . "\n";
+            $this->jsonEncode($data) .
+            ');</script>' . "\n";
     }
 }

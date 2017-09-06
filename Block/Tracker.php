@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Mygento Team
+ * @copyright 2017 Mygento (https://www.mygento.ru)
+ * @package Mygento_Metrika
+ */
+
 namespace Mygento\Metrika\Block;
 
 /**
@@ -13,21 +19,21 @@ class Tracker extends \Magento\Framework\View\Element\Template
      * @var \Magento\Framework\Json\Helper\Data
      */
     protected $_jsonHelper;
-
+    
     /**
      *  Registry
      *
      * @var \Magento\Framework\Registry
      */
     protected $_coreRegistry;
-
+    
     /**
      * Session
      *
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
     protected $_session;
-
+    
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
@@ -45,8 +51,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         $this->_session = $context->getSession();
         parent::__construct($context, $data);
     }
-
-
+    
     /**
      * Get Dynamic tracker through events
      * @return array
@@ -60,7 +65,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         }
         return [];
     }
-
+    
     /**
      *  Get parameters for counter
      *
@@ -91,7 +96,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         }
         return $options;
     }
-
+    
     /**
      * Get Tracker Code
      *
@@ -101,7 +106,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
     {
         return $this->getConfig('counter');
     }
-
+    
     /**
      * Render Metrika tracking scripts
      *
@@ -114,7 +119,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         }
         return parent::_toHtml();
     }
-
+    
     /**
      * Get config
      *
@@ -128,7 +133,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
-
+    
     /**
      * Get data from Registry
      *
@@ -139,7 +144,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
     {
         return $this->_coreRegistry->registry($name);
     }
-
+    
     /**
      * @param $data
      * @return string

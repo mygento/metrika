@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Mygento Team
+ * @copyright 2017 Mygento (https://www.mygento.ru)
+ * @package Mygento_Metrika
+ */
 
 namespace Mygento\Metrika\Block\Tracker;
 
@@ -11,7 +16,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
      * @var \Magento\Checkout\Model\Session
      */
     protected $_checkoutSession;
-
+    
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\View\Element\Template\Context $context,
@@ -22,8 +27,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
         parent::__construct($context, $coreRegistry, $jsonHelper, $data);
         $this->_checkoutSession = $checkoutSession;
     }
-
-
+    
     /**
      * Render Metrika tracking success scripts
      *
@@ -56,7 +60,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
             ]
         ];
         return '<script>' . $this->getConfig('container_name') . '.push(' .
-        $this->jsonEncode($data) .
-        ');</script>' . "\n";
+            $this->jsonEncode($data) .
+            ');</script>' . "\n";
     }
 }
