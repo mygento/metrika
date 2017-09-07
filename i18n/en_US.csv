@@ -1,0 +1,7 @@
+Webvisor,"Session Replay, scroll map, form analytics"
+Clickmap,"Clicking map"
+trackLinks,"Links tracking"
+accurateTrackBounce,"Accurate tracking"
+trackHash,"Hash tracking in the browser address bar"
+noindex,"Stop automatic page indexing"
+ecommerce,"Dispatch ecommerce data to Metrica"

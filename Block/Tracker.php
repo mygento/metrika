@@ -51,7 +51,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         $this->_session = $context->getSession();
         parent::__construct($context, $data);
     }
-
+    
     /**
      * Get Dynamic tracker through events
      * @return array
