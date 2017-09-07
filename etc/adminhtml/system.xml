@@ -84,9 +84,8 @@
                     </depends>
                     <tooltip>Запрет автоматической отправки страниц сайта, на которых установлен счетчик Метрики, на индексацию Яндекс.Поиску.</tooltip>
                 </field>
-                <field id="ecommerce" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
-                    <label>Ecommerce</label>
+                <field id="ecommerce" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ecommerce</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="enabled">1</field>

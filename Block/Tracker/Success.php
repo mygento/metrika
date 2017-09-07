@@ -27,7 +27,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
         parent::__construct($context, $coreRegistry, $jsonHelper, $data);
         $this->_checkoutSession = $checkoutSession;
     }
-    
+
     /**
      * Render Metrika tracking success scripts
      *

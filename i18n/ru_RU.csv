@@ -1,0 +1,13 @@
+"Metrika","Яндекс Метрика"
+"General Setting","Основные настройки"
+Enabled,Включено
+"Counter Number","Номер счётчика"
+"Data container name","Имя контейнера данных"
+Webvisor,Вебвизор
+Clickmap,"Карта кликов (clickmap)"
+trackLinks,"Отслеживать ссылки (trackLinks)"
+accurateTrackBounce,"Точный показатель отказов (accurateTrackBounce)"
+trackHash,"Отслеживать хеш в адресной строке браузера (trackHash)"
+noindex,"Запретить индексацию страниц со счетчиком (ut='noindex')"
+ecommerce,"Собирать данные электронной коммерции  (Ecommerce)"
+Debug,Отладка
