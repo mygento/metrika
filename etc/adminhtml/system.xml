@@ -22,7 +22,7 @@
                 <field id="counter" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Counter Number</label>
-                    <validate>required-entry</validate>
+                    <validate>required-entry validate-number</validate>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
