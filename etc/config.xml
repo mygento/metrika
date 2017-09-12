@@ -14,6 +14,7 @@
                 <accuratetrackbounce>0</accuratetrackbounce>
                 <noindex>0</noindex>
                 <ecommerce>1</ecommerce>
+                <skuAttr>sku</skuAttr>
             </general>
         </metrika>
     </default>

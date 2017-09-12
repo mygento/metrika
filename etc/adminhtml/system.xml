@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
@@ -82,11 +81,19 @@
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
-                    <tooltip>Запрет автоматической отправки страниц сайта, на которых установлен счетчик Метрики, на индексацию Яндекс.Поиску.</tooltip>
+                    <tooltip>Запрет автоматической отправки страниц сайта, на которых установлен счетчик Метрики, на индексацию Яндекс.Поиску.</tooltip>
                 </field>
                 <field id="ecommerce" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>ecommerce</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="skuAttr" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Product code attribute</label>
+                    <source_model>Mygento\Base\Model\Source\Attributes</source_model>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>

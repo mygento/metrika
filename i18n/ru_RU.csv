@@ -9,4 +9,5 @@ accurateTrackBounce,"Точный показатель отказов (accurateT
 trackHash,"Отслеживать хеш в адресной строке браузера (trackHash)"
 noindex,"Запретить индексацию страниц со счетчиком (ut='noindex')"
 ecommerce,"Собирать данные электронной коммерции  (Ecommerce)"
+"Product code attribute","Аттрибут кода товара"
 Debug,Отладка
