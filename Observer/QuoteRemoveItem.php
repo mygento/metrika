@@ -19,17 +19,17 @@ class QuoteRemoveItem implements \Magento\Framework\Event\ObserverInterface
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
     protected $_session;
-
+    
     /**
      * @var \Mygento\Base\Helper\Data
      */
     protected $_baseHelper;
-
+    
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,
         \Mygento\Base\Helper\Data $baseHelper
     ) {
-        $this->_session    = $session;
+        $this->_session = $session;
         $this->_baseHelper = $baseHelper;
     }
     
@@ -45,7 +45,11 @@ class QuoteRemoveItem implements \Magento\Framework\Event\ObserverInterface
             'ecommerce' => [
                 'remove' => [
                     'products' => [
-                        'id' => $this->_baseHelper->getAttributeValue('skuAttr', $product->getId(), 'metrika/general/'),
+                        'id' => $this->_baseHelper->getAttributeValue(
+                            'skuAttr',
+                            $product->getId(),
+                            'metrika/general/'
+                        ),
                         'name' => $product->getName(),
                     ]
                 ]

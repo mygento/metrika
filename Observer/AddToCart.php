@@ -19,17 +19,17 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
     protected $_session;
-
+    
     /**
      * @var \Mygento\Base\Helper\Data
      */
     protected $_baseHelper;
-
+    
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,
         \Mygento\Base\Helper\Data $baseHelper
     ) {
-        $this->_session    = $session;
+        $this->_session = $session;
         $this->_baseHelper = $baseHelper;
     }
     
@@ -42,19 +42,22 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         $product = $observer->getEvent()->getProduct();
         $request = $observer->getEvent()->getRequest();
         $params = $request->getParams();
+        $qty = $params['qty'];
         if (!isset($params['qty']) || $params['qty'] == 0) {
             $qty = 1;
-        } else {
-            $qty = $params['qty'];
         }
-
+        
         $data = [
             'ecommerce' => [
                 'add' => [
                     'products' => [
-                        'id' => $this->_baseHelper->getAttributeValue('skuAttr', $product->getId(), 'metrika/general/'),
+                        'id' => $this->_baseHelper->getAttributeValue(
+                            'skuAttr',
+                            $product->getId(),
+                            'metrika/general/'
+                        ),
                         'name' => $product->getName(),
-                        'price'    => $product->getPrice(),
+                        'price' => $product->getPrice(),
                         //"brand" => "Яндекс / Яndex",
                         //"category" => "Аксессуары/Сумки",
                         'quantity' => $qty,
@@ -64,7 +67,7 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         ];
         $this->setSessionData($data);
     }
-
+    
     /**
      * Set or Update Session Data
      *

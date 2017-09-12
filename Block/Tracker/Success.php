@@ -16,7 +16,7 @@ class Success extends \Mygento\Metrika\Block\Tracker
      * @var \Magento\Checkout\Model\Session
      */
     protected $_checkoutSession;
-
+    
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\View\Element\Template\Context $context,
@@ -43,7 +43,11 @@ class Success extends \Mygento\Metrika\Block\Tracker
         $prodData = [];
         foreach ($order->getAllVisibleItems() as $item) {
             $prodData[] = [
-                'id' => $this->_baseHelper->getAttributeValue('skuAttr', $item->getProductId(), 'metrika/general/'),
+                'id' => $this->_baseHelper->getAttributeValue(
+                    'skuAttr',
+                    $item->getProductId(),
+                    'metrika/general/'
+                ),
                 'name' => $item->getName(),
                 'price' => $item->getPrice(),
                 'quantity' => (int)$item->getQtyOrdered()

@@ -33,12 +33,12 @@ class Tracker extends \Magento\Framework\View\Element\Template
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
     protected $_session;
-
+    
     /**
      * @var \Mygento\Base\Helper\Data
      */
     protected $_baseHelper;
-
+    
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
@@ -53,10 +53,10 @@ class Tracker extends \Magento\Framework\View\Element\Template
         \Mygento\Base\Helper\Data $baseHelper,
         array $data = []
     ) {
-        $this->_jsonHelper   = $jsonHelper;
+        $this->_jsonHelper = $jsonHelper;
         $this->_coreRegistry = $coreRegistry;
-        $this->_session      = $context->getSession();
-        $this->_baseHelper   = $baseHelper;
+        $this->_session = $context->getSession();
+        $this->_baseHelper = $baseHelper;
         parent::__construct($context, $data);
     }
     
