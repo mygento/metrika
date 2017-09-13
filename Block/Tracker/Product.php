@@ -26,7 +26,7 @@ class Product extends \Mygento\Metrika\Block\Tracker
             return '';
         }
         $prodData = [
-            'id' => $this->_baseHelper->getAttributeValue(
+            'id' => (string)$this->_baseHelper->getAttrValueByParam(
                 'metrika/general/skuAttr',
                 $currentProduct->getId()
             ),

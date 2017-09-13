@@ -42,19 +42,15 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         $product = $observer->getEvent()->getProduct();
         $request = $observer->getEvent()->getRequest();
         $params = $request->getParams();
-        $qty = $params['qty'];
-        if (!isset($params['qty']) || $params['qty'] == 0) {
-            $qty = 1;
-        }
-        
+        $qty = isset($params['qty']) && $params['qty'] ? $params['qty'] : 1;
+
         $data = [
             'ecommerce' => [
                 'add' => [
                     'products' => [
-                        'id' => $this->_baseHelper->getAttributeValue(
-                            'skuAttr',
-                            $product->getId(),
-                            'metrika/general/'
+                        'id' => (string)$this->_baseHelper->getAttrValueByParam(
+                            'metrika/general/skuAttr',
+                            $product->getId()
                         ),
                         'name' => $product->getName(),
                         'price' => $product->getPrice(),

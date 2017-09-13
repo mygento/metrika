@@ -45,10 +45,9 @@ class QuoteRemoveItem implements \Magento\Framework\Event\ObserverInterface
             'ecommerce' => [
                 'remove' => [
                     'products' => [
-                        'id' => $this->_baseHelper->getAttributeValue(
-                            'skuAttr',
-                            $product->getId(),
-                            'metrika/general/'
+                        'id' => (string)$this->_baseHelper->getAttrValueByParam(
+                            'metrika/general/skuAttr',
+                            $product->getId()
                         ),
                         'name' => $product->getName(),
                     ]

@@ -43,10 +43,9 @@ class Success extends \Mygento\Metrika\Block\Tracker
         $prodData = [];
         foreach ($order->getAllVisibleItems() as $item) {
             $prodData[] = [
-                'id' => $this->_baseHelper->getAttributeValue(
-                    'skuAttr',
-                    $item->getProductId(),
-                    'metrika/general/'
+                'id' => (string)$this->_baseHelper->getAttrValueByParam(
+                    'metrika/general/skuAttr',
+                    $item->getProductId()
                 ),
                 'name' => $item->getName(),
                 'price' => $item->getPrice(),
