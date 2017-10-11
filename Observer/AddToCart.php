@@ -18,21 +18,21 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
      *
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
-    protected $_session;
-    
+    protected $session;
+
     /**
      * @var \Mygento\Base\Helper\Data
      */
-    protected $_baseHelper;
-    
+    protected $helper;
+
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,
-        \Mygento\Base\Helper\Data $baseHelper
+        \Mygento\Base\Helper\Data $helper
     ) {
-        $this->_session = $session;
-        $this->_baseHelper = $baseHelper;
+        $this->session = $session;
+        $this->helper = $helper;
     }
-    
+
     /**
      * @param Observer $observer
      * @return void
@@ -48,14 +48,12 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
             'ecommerce' => [
                 'add' => [
                     'products' => [
-                        'id' => (string)$this->_baseHelper->getAttrValueByParam(
+                        'id' => (string)$this->helper->getAttrValueByParam(
                             'metrika/general/skuAttr',
                             $product->getId()
                         ),
                         'name' => $product->getName(),
                         'price' => $product->getPrice(),
-                        //"brand" => "Яндекс / Яndex",
-                        //"category" => "Аксессуары/Сумки",
                         'quantity' => $qty,
                     ]
                 ]
@@ -63,7 +61,7 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
         ];
         $this->setSessionData($data);
     }
-    
+
     /**
      * Set or Update Session Data
      *
@@ -72,11 +70,11 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
      */
     protected function setSessionData($data)
     {
-        $sessionData = $this->_session->getMetrika();
+        $sessionData = $this->session->getMetrika();
         if ($sessionData && is_array($sessionData)) {
             $sessionData[] = $data;
-            return $this->_session->setMetrika($sessionData);
+            return $this->session->setMetrika($sessionData);
         }
-        return $this->_session->setMetrika([$data]);
+        return $this->session->setMetrika([$data]);
     }
 }

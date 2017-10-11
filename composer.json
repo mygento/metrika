@@ -1,7 +1,7 @@
 {
   "name": "mygento/metrika",
   "type": "magento2-module",
-  "version": "2.0.5",
+  "version": "2.2.0",
   "license": "OSL-3.0",
   "homepage": "https://github.com/mygento/metrika",
   "description": "Yandex Metrika Integration to Magento",
@@ -26,10 +26,8 @@
     "yandex"
   ],
   "require": {
-    "php": "~5.6.0|~7.0.0|~7.1.0",
-    "magento/framework": "101.*",
     "magento/module-checkout": "100.*",
-    "mygento/base": "^2.0.10"
+    "mygento/base": "2.2.*"
   },
   "require-dev": {
     "mygento/coding-standard": "2.*"

@@ -15,35 +15,36 @@ class Success extends \Mygento\Metrika\Block\Tracker
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected $_checkoutSession;
-    
+    protected $checkoutSession;
+
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
-        \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\Json\Helper\Data $jsonHelper,
-        \Mygento\Base\Helper\Data $baseHelper,
+        \Mygento\Base\Helper\Data $helper,
+        \Magento\Framework\View\Element\Template\Context $context,
         array $data = []
     ) {
-        parent::__construct($context, $coreRegistry, $jsonHelper, $baseHelper, $data);
-        $this->_checkoutSession = $checkoutSession;
+        parent::__construct($coreRegistry, $jsonHelper, $helper, $context, $data);
+        $this->checkoutSession = $checkoutSession;
     }
-    
+
     /**
      * Render Metrika tracking success scripts
      *
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      * @return string
      */
     protected function _toHtml()
     {
-        $order = $this->_checkoutSession->getLastRealOrder();
+        $order = $this->checkoutSession->getLastRealOrder();
         if (!$order->getIncrementId() || !$this->getConfig('ecommerce')) {
             return '';
         }
         $prodData = [];
         foreach ($order->getAllVisibleItems() as $item) {
             $prodData[] = [
-                'id' => (string)$this->_baseHelper->getAttrValueByParam(
+                'id' => (string)$this->helper->getAttrValueByParam(
                     'metrika/general/skuAttr',
                     $item->getProductId()
                 ),

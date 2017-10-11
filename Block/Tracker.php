@@ -18,62 +18,62 @@ class Tracker extends \Magento\Framework\View\Element\Template
      *
      * @var \Magento\Framework\Json\Helper\Data
      */
-    protected $_jsonHelper;
-    
+    protected $jsonHelper;
+
     /**
      *  Registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected $_coreRegistry;
-    
+    protected $coreRegistry;
+
     /**
      * Session
      *
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
-    protected $_session;
-    
+    protected $session;
+
     /**
      * @var \Mygento\Base\Helper\Data
      */
-    protected $_baseHelper;
-    
+    protected $helper;
+
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\Json\Helper\Data $jsonHelper
-     * @param \Mygento\Base\Helper\Data $baseHelper
+     * @param \Mygento\Base\Helper\Data $helper
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\Json\Helper\Data $jsonHelper,
-        \Mygento\Base\Helper\Data $baseHelper,
+        \Mygento\Base\Helper\Data $helper,
+        \Magento\Framework\View\Element\Template\Context $context,
         array $data = []
     ) {
-        $this->_jsonHelper = $jsonHelper;
-        $this->_coreRegistry = $coreRegistry;
-        $this->_session = $context->getSession();
-        $this->_baseHelper = $baseHelper;
         parent::__construct($context, $data);
+        $this->jsonHelper = $jsonHelper;
+        $this->coreRegistry = $coreRegistry;
+        $this->session = $context->getSession();
+        $this->helper = $helper;
     }
-    
+
     /**
      * Get Dynamic tracker through events
      * @return array
      */
     public function getDynamicTrackers()
     {
-        $data = $this->_session->getMetrika();
+        $data = $this->session->getMetrika();
         if ($data && is_array($data)) {
-            $this->_session->unsMetrika();
+            $this->session->unsMetrika();
             return $data;
         }
         return [];
     }
-    
+
     /**
      *  Get parameters for counter
      *
@@ -92,6 +92,9 @@ class Tracker extends \Magento\Framework\View\Element\Template
         if ($this->getConfig('tracklinks')) {
             $options['trackLinks'] = (bool)$this->getConfig('tracklinks');
         }
+        if ($this->getConfig('trackhash')) {
+            $options['trackhash'] = (bool)$this->getConfig('trackhash');
+        }
         if ($this->getConfig('accuratetrackbounce')) {
             $options['accurateTrackBounce'] =
                 (bool)$this->getConfig('accuratetrackbounce');
@@ -104,7 +107,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         }
         return $options;
     }
-    
+
     /**
      * Get Tracker Code
      *
@@ -114,10 +117,11 @@ class Tracker extends \Magento\Framework\View\Element\Template
     {
         return $this->getConfig('counter');
     }
-    
+
     /**
      * Render Metrika tracking scripts
      *
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      * @return string
      */
     protected function _toHtml()
@@ -127,7 +131,7 @@ class Tracker extends \Magento\Framework\View\Element\Template
         }
         return parent::_toHtml();
     }
-    
+
     /**
      * Get config
      *
@@ -136,12 +140,9 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     public function getConfig($path)
     {
-        return $this->_scopeConfig->getValue(
-            'metrika/general/' . $path,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        return $this->helper->getConfig('metrika/general/' . $path);
     }
-    
+
     /**
      * Get data from Registry
      *
@@ -150,15 +151,15 @@ class Tracker extends \Magento\Framework\View\Element\Template
      */
     public function getRegistry($name)
     {
-        return $this->_coreRegistry->registry($name);
+        return $this->coreRegistry->registry($name);
     }
-    
+
     /**
      * @param $data
      * @return string
      */
     public function jsonEncode($data)
     {
-        return $this->_jsonHelper->jsonEncode($data);
+        return $this->jsonHelper->jsonEncode($data);
     }
 }

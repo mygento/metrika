@@ -3,16 +3,15 @@ $code = $block->getCode();
 $options = $block->getOptions();
 ?>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">window.<?php echo $this->getConfig('container_name');?> = window.<?php echo $this->getConfig('container_name');?> || []; (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter<?php echo $code;?> = new Ya.Metrika(<?php echo json_encode($options);?>); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/<?php echo $code;?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script type="text/javascript">window.<?php echo $block->getConfig('container_name');?> = window.<?php echo $block->getConfig('container_name');?> || []; (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter<?php echo $code;?> = new Ya.Metrika(<?php echo json_encode($options);?>); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/<?php echo $code;?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <?php
-$dynamic = $this->getDynamicTrackers();
+$dynamic = $block->getDynamicTrackers();
 if (count($dynamic) > 0) {
     echo '<script type="text/javascript">';
     foreach ($dynamic as $d) {
-        echo $this->getConfig('container_name') . '.push(' . $this->jsonEncode($d) . ');' . "\n";
+        echo $block->getConfig('container_name') . '.push(' . $block->jsonEncode($d) . ');' . "\n";
     }
     echo '</script>';
 }
 echo $block->getChildHtml();
-?>

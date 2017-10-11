@@ -13,10 +13,11 @@ namespace Mygento\Metrika\Block\Tracker;
  */
 class Product extends \Mygento\Metrika\Block\Tracker
 {
-    
+
     /**
      * Render Metrika tracking product scripts
      *
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      * @return string
      */
     protected function _toHtml()
@@ -26,7 +27,7 @@ class Product extends \Mygento\Metrika\Block\Tracker
             return '';
         }
         $prodData = [
-            'id' => (string)$this->_baseHelper->getAttrValueByParam(
+            'id' => (string)$this->helper->getAttrValueByParam(
                 'metrika/general/skuAttr',
                 $currentProduct->getId()
             ),
