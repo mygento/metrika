@@ -27,7 +27,7 @@
   ],
   "require": {
     "magento/module-checkout": "100.*",
-    "mygento/base": "2.2.*"
+    "mygento/base": "^2.2.5"
   },
   "require-dev": {
     "mygento/coding-standard": "2.*"
