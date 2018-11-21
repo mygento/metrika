@@ -1,9 +1,17 @@
 <?php
 $code = $block->getCode();
 $options = $block->getOptions();
+
+$counterClass = 'Ya.Metrika';
+$counterCallbacks = 'yandex_metrika_callbacks';
+$betaPlayer = $this->getConfig('beta_player');
+if ($betaPlayer) {
+    $counterClass .= '2';
+    $counterCallbacks .= '2';
+}
 ?>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">window.<?php echo $this->getConfig('container_name');?> = window.<?php echo $this->getConfig('container_name');?> || []; (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter<?php echo $code;?> = new Ya.Metrika(<?php echo json_encode($options);?>); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/<?php echo $code;?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script type="text/javascript">window.<?php echo $this->getConfig('container_name');?> = window.<?php echo $this->getConfig('container_name');?> || []; (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter<?php echo $code;?> = new <?php echo $counterClass ?>(<?php echo json_encode($options);?>); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "<?php echo $counterCallbacks ?>");</script><noscript><div><img src="https://mc.yandex.ru/watch/<?php echo $code;?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <?php
 $dynamic = $this->getDynamicTrackers();

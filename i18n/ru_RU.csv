@@ -3,6 +3,7 @@
 "Counter Number","Номер счётчика"
 "Data container name","Имя контейнера данных"
 Webvisor,Вебвизор
+"Webvisor beta-player","Бета-плеер для вебвизора"
 Clickmap,"Карта кликов (clickmap)"
 trackLinks,"Отслеживать ссылки (trackLinks)"
 accurateTrackBounce,"Точный показатель отказов (accurateTrackBounce)"

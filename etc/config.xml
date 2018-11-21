@@ -8,6 +8,7 @@
                 <container_name>dataLayer</container_name>
                 <debug>0</debug>
                 <webvisor>1</webvisor>
+                <beta_player>0</beta_player>
                 <clickmap>1</clickmap>
                 <tracklinks>1</tracklinks>
                 <trackhash>0</trackhash>
