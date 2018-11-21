@@ -53,7 +53,7 @@ class AddToCart implements \Magento\Framework\Event\ObserverInterface
                             $product->getId()
                         ),
                         'name' => $product->getName(),
-                        'price' => $product->getPrice(),
+                        'price' => round($product->getFinalPrice(), 2),
                         //"brand" => "Яндекс / Яndex",
                         //"category" => "Аксессуары/Сумки",
                         'quantity' => $qty,
